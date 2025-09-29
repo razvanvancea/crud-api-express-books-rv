@@ -26,8 +26,10 @@ npm install
 
 Start the app with:
 
-
+```
 npm run start
+```
+
 
 Server will run at: http://localhost:3000
 
