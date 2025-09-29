@@ -16,24 +16,18 @@ In-memory data storage (no database required)
 
 📦 Installation
 
-Clone this repository or copy the code.
+Clone this repository.
 
 Install dependencies:
 
-npm install express body-parser jsonwebtoken swagger-jsdoc swagger-ui-express
-
-(Optional, for auto-restarts in development):
-
-npm install --save-dev nodemon
-▶️ Running the App
+```
+npm install
+```
 
 Start the app with:
 
-node index.js
 
-Or, if using nodemon:
-
-npm run dev
+npm run start
 
 Server will run at: http://localhost:3000
 
