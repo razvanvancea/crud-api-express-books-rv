@@ -94,4 +94,4 @@ Test the protected endpoint /private/books.
 
 📦 Docker
 
-docker run -d -p 8088:3000 --name books-demo-crud-rest-api-app rvancea/books-demo-crud-rest-api-app
+docker run -d --rm -p 8088:3000 --name books-crud-rest-api-app rvancea/books-crud-rest-api-app
