@@ -91,3 +91,7 @@ Copy the token from the response.
 Authorize in Swagger UI or add Authorization: Bearer <token> in Postman.
 
 Test the protected endpoint /private/books.
+
+📦 Docker
+
+rvancea/books-demo-crud-rest-api-app
