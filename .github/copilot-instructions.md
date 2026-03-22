@@ -5,6 +5,7 @@
 Single-file Express API (`index.js`) serving CRUD endpoints for books with JWT authentication. No database — data lives in an in-memory `books` array that resets on restart. Designed as a teaching tool for API test automation, not for production use.
 
 ### Key components in `index.js`:
+
 - **Auth**: `POST /auth/login` issues a JWT (hardcoded credentials: `rv@tai.com` / `learnwithrv`, secret: `mysecretkey`)
 - **Public routes**: `GET /books`, `GET /books/:id`
 - **Protected routes**: `GET /private/books`, `POST /books`, `PUT /books/:id`, `DELETE /books/:id` — guarded by `authenticateToken` middleware

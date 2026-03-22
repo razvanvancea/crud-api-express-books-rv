@@ -1,4 +1,4 @@
-📚 Books CRUD API with Authentication, created by [RV](https://razvanvancea.ro) 
+📚 Books CRUD API with Authentication, created by [RV](https://razvanvancea.ro)
 
 A simple Node.js + Express CRUD API to manage books, with JWT authentication and Swagger documentation. Perfect for learning and teaching API test automation.
 
@@ -30,7 +30,6 @@ Start the app with:
 npm run start
 ```
 
-
 Server will run at: http://localhost:3000
 
 Swagger docs: http://localhost:3000/api-docs
@@ -42,10 +41,9 @@ Login to get a JWT token:
 POST /auth/login
 Content-Type: application/json
 
-
 {
-  "email": "rv@tai.com",
-  "password": "learnwithrv"
+"email": "rv@tai.com",
+"password": "learnwithrv"
 }
 
 If successful, you’ll receive a token:

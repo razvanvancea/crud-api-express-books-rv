@@ -15,7 +15,7 @@ const SECRET_KEY = 'mysecretkey';
 // In-memory database (array for simplicity)
 let books = [
   { id: 1, title: '1984', author: 'George Orwell' },
-  { id: 2, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' }
+  { id: 2, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
 ];
 
 // Swagger setup
@@ -25,7 +25,7 @@ const swaggerOptions = {
     info: {
       title: 'Books API',
       version: '1.0.0',
-      description: 'A simple CRUD API with authentication for teaching API test automation'
+      description: 'A simple CRUD API with authentication for teaching API test automation',
     },
     servers: [{ url: `http://localhost:${port}` }],
   },
@@ -34,6 +34,29 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Health check endpoint
+/**
+ * @swagger
+ * /health:
+ *   get:
+ *     summary: Health check
+ *     description: Returns the health status of the API
+ *     responses:
+ *       200:
+ *         description: API is up and running
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: ok
+ */
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 // AUTH endpoint: login to get token
 /**
@@ -163,7 +186,7 @@ app.get('/private/books', authenticateToken, (req, res) => {
  *         description: Book not found
  */
 app.get('/books/:id', (req, res) => {
-  const book = books.find(b => b.id === parseInt(req.params.id));
+  const book = books.find((b) => b.id === parseInt(req.params.id));
   if (!book) return res.status(404).json({ message: 'Book not found.' });
   res.json(book);
 });
@@ -198,7 +221,7 @@ app.get('/books/:id', (req, res) => {
  *         description: Book not found
  */
 app.put('/books/:id', (req, res) => {
-  const book = books.find(b => b.id === parseInt(req.params.id));
+  const book = books.find((b) => b.id === parseInt(req.params.id));
   if (!book) return res.status(404).json({ message: 'Book not found.' });
 
   const { title, author } = req.body;
@@ -227,7 +250,7 @@ app.put('/books/:id', (req, res) => {
  *         description: Book not found
  */
 app.delete('/books/:id', (req, res) => {
-  const bookIndex = books.findIndex(b => b.id === parseInt(req.params.id));
+  const bookIndex = books.findIndex((b) => b.id === parseInt(req.params.id));
   if (bookIndex === -1) return res.status(404).json({ message: 'Book not found.' });
 
   const deletedBook = books.splice(bookIndex, 1);
@@ -240,9 +263,9 @@ swaggerOptions.definition.components = {
     bearerAuth: {
       type: 'http',
       scheme: 'bearer',
-      bearerFormat: 'JWT'
-    }
-  }
+      bearerFormat: 'JWT',
+    },
+  },
 };
 
 // Start server
