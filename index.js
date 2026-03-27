@@ -149,6 +149,26 @@ app.get('/books', (req, res) => {
   res.json(books);
 });
 
+// READ all books (random-failure - 25% chance of 500 error)
+/**
+ * @swagger
+ * /books/random-failure:
+ *   get:
+ *     summary: Get all books (with random 500 error ~25% of the time)
+ *     responses:
+ *       200:
+ *         description: List of books
+ *       500:
+ *         description: Internal server error (random, occurs ~25% of the time)
+ */
+app.get('/books/random-failure', (req, res) => {
+  const randomChance = Math.random();
+  if (randomChance < 0.25) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+  res.json(books);
+});
+
 // READ all books (private, requires token)
 /**
  * @swagger
