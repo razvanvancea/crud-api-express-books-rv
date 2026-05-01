@@ -5,7 +5,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyParser.json());
 
@@ -16,6 +16,7 @@ const SECRET_KEY = 'mysecretkey';
 let books = [
   { id: 1, title: '1984', author: 'George Orwell' },
   { id: 2, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+  { id: 3, title: 'The Old Man and the Sea', author: 'Ernest Hemingway' },
 ];
 
 // Swagger setup

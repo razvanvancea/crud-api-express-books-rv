@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node index.js",
-    "format": "npx prettier --write ."
+    "format": "npx oxfmt"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,6 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "oxfmt": "^0.47.0"
   }
 }
