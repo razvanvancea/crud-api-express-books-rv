@@ -30,9 +30,9 @@ Start the app with:
 npm run start
 ```
 
-Server will run at: http://localhost:3000
+Server will run at: http://localhost:3001
 
-Swagger docs: http://localhost:3000/api-docs
+Swagger docs: http://localhost:3001/api-docs
 
 🔑 Authentication
 
@@ -74,7 +74,7 @@ DELETE /books/{id} → Delete book by ID
 
 📑 Swagger Documentation
 
-Available at: http://localhost:3000/api-docs
+Available at: http://localhost:3001/api-docs
 
 Provides interactive API explorer for all endpoints
 
@@ -92,4 +92,4 @@ Test the protected endpoint /private/books.
 
 📦 Docker
 
-docker run -d --rm -p 8088:3000 --name books-crud-rest-api-app rvancea/books-crud-rest-api-app
+docker run -d --rm -p 8088:3001 --name books-crud-rest-api-app rvancea/books-crud-rest-api-app
