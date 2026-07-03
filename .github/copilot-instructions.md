@@ -6,7 +6,7 @@ Single-file Express API (`index.js`) serving CRUD endpoints for books with JWT a
 
 ### Key components in `index.js`:
 
-- **Auth**: `POST /auth/login` issues a JWT (hardcoded credentials: `rv@tai.com` / `learnwithrv`, secret: `mysecretkey`)
+- **Auth**: `POST /auth/login` issues a JWT (hardcoded credentials: `admin@admin.com` / `learnwithrv`, secret: `mysecretkey`)
 - **Public routes**: `GET /books`, `GET /books/:id`
 - **Protected routes**: `GET /private/books`, `POST /books`, `PUT /books/:id`, `DELETE /books/:id` — guarded by `authenticateToken` middleware
 - **Swagger**: auto-generated from JSDoc annotations in `index.js`, served at `/api-docs`

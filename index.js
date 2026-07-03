@@ -69,7 +69,7 @@ app.get('/health', (req, res) => {
  * @swagger
  * /auth/login:
  *   post:
- *     summary: Login to get JWT token email rv@tai.com password learnwithrv
+ *     summary: Login to get JWT token email admin@admin.com password learnwithrv
  *     requestBody:
  *       required: true
  *       content:
@@ -89,7 +89,7 @@ app.get('/health', (req, res) => {
  */
 app.post('/auth/login', (req, res) => {
   const { email, password } = req.body;
-  if (email === 'rv@tai.com' && password === 'learnwithrv') {
+  if (email === 'admin@admin.com' && password === 'learnwithrv') {
     const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' });
     return res.json({ token });
   }
