@@ -1,371 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Books CRUD UI</title>
-  <style>
-    :root {
-      color-scheme: light;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f5f7fb;
-      color: #102a43;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books CRUD UI</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: #f5f7fb;
+        color: #102a43;
+      }
 
-    * {
-      box-sizing: border-box;
-    }
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      padding: 24px;
-      background: linear-gradient(180deg, #ffffff 0%, #eef4ff 100%);
-    }
-
-    header {
-      text-align: center;
-      padding: 24px 0 12px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.04em;
-    }
-
-    header p {
-      margin: 12px auto 0;
-      max-width: 680px;
-      color: #486581;
-      line-height: 1.6;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 1040px;
-      margin: 0 auto;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
-    }
-
-    .card h2 {
-      margin: 0 0 16px;
-      font-size: 1.3rem;
-      color: #0f172a;
-    }
-
-    form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    label {
-      display: grid;
-      gap: 8px;
-      font-size: 0.95rem;
-      color: #334155;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      font-size: 1rem;
-      background: #f8fafc;
-      transition: border-color 0.2s ease;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #3b82f6;
-      background: #ffffff;
-    }
-
-    button,
-    .action-button {
-      appearance: none;
-      border: none;
-      outline: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
-    }
-
-    button:hover,
-    .action-button:hover {
-      transform: translateY(-1px);
-    }
-
-    button {
-      width: fit-content;
-      background: #2563eb;
-      color: #ffffff;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
-    }
-
-    .message {
-      min-height: 1.6em;
-      margin-bottom: 14px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-size: 0.95rem;
-      display: none;
-    }
-
-    .message.visible {
-      display: block;
-    }
-
-    .message.success {
-      border-color: #86efac;
-      background: #ecfdf5;
-      color: #166534;
-    }
-
-    .message.error {
-      border-color: #fca5a5;
-      background: #fef2f2;
-      color: #991b1b;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 680px;
-    }
-
-    th,
-    td {
-      text-align: left;
-      padding: 16px 14px;
-      border-bottom: 1px solid #e2e8f0;
-      vertical-align: middle;
-      font-size: 0.95rem;
-      color: #1e293b;
-    }
-
-    th {
-      color: #0f172a;
-      background: #f8fafc;
-      font-weight: 600;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .action-button {
-      min-width: 96px;
-      color: #ffffff;
-    }
-
-    .action-button.delete {
-      background: #dc2626;
-    }
-
-    .action-button.edit {
-      background: #f59e0b;
-    }
-
-    .action-button.save {
-      background: #10b981;
-    }
-
-    .action-button.cancel {
-      background: #64748b;
-    }
-
-    footer {
-      width: 100%;
-      max-width: 1040px;
-      margin: 0 auto 8px;
-      padding: 14px 24px;
-      text-align: center;
-      color: #475569;
-      font-size: 0.95rem;
-      background: transparent;
-    }
-
-    @media (max-width: 740px) {
       body {
-        padding: 16px;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+        background: linear-gradient(180deg, #ffffff 0%, #eef4ff 100%);
+      }
+
+      header {
+        text-align: center;
+        padding: 24px 0 12px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.04em;
+      }
+
+      header p {
+        margin: 12px auto 0;
+        max-width: 680px;
+        color: #486581;
+        line-height: 1.6;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 1040px;
+        margin: 0 auto;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      }
+
+      .card h2 {
+        margin: 0 0 16px;
+        font-size: 1.3rem;
+        color: #0f172a;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
       }
 
       .field-row {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-size: 0.95rem;
+        color: #334155;
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border-color 0.2s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: #ffffff;
+      }
+
+      button,
+      .action-button {
+        appearance: none;
+        border: none;
+        outline: none;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background-color 0.15s ease;
+      }
+
+      button:hover,
+      .action-button:hover {
+        transform: translateY(-1px);
+      }
+
+      button {
+        width: fit-content;
+        background: #2563eb;
+        color: #ffffff;
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.16);
+      }
+
+      .message {
+        min-height: 1.6em;
+        margin-bottom: 14px;
+        padding: 12px 16px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        font-size: 0.95rem;
+        display: none;
+      }
+
+      .message.visible {
+        display: block;
+      }
+
+      .message.success {
+        border-color: #86efac;
+        background: #ecfdf5;
+        color: #166534;
+      }
+
+      .message.error {
+        border-color: #fca5a5;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 680px;
       }
 
       th,
       td {
-        padding: 14px 10px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Books CRUD Interface</h1>
-    <p>Manage books using the API backend. Add a new book, then edit or delete any entry from the list below.</p>
-  </header>
-
-  <section class="card">
-    <h2>Add a New Book</h2>
-    <form id="add-book-form">
-      <div class="field-row">
-        <label>
-          Title
-          <input id="title-input" type="text" placeholder="Enter book title" required />
-        </label>
-        <label>
-          Author
-          <input id="author-input" type="text" placeholder="Enter author name" required />
-        </label>
-      </div>
-      <button type="submit">Add Book</button>
-    </form>
-  </section>
-
-  <section class="card">
-    <h2>Book List</h2>
-    <div id="message" class="message"></div>
-    <div class="table-wrapper">
-      <table id="books-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
-
-  <footer>Copyright 2026 - powered by <a href="https://razvanvancea.ro/" target="_blank" rel="noreferrer">Razvan Vancea</a></footer>
-
-  <script>
-    const apiBase = '';
-    const booksTableBody = document.querySelector('#books-table tbody');
-    const addForm = document.getElementById('add-book-form');
-    const titleInput = document.getElementById('title-input');
-    const authorInput = document.getElementById('author-input');
-    const messageEl = document.getElementById('message');
-    let editingId = null;
-
-    function showMessage(text, type = 'success') {
-      messageEl.textContent = text;
-      messageEl.className = `message visible ${type}`;
-      setTimeout(() => {
-        messageEl.className = 'message';
-      }, 3200);
-    }
-
-    function formatCell(value) {
-      return value == null ? '' : String(value);
-    }
-
-    async function loadBooks() {
-      try {
-        const response = await fetch(`${apiBase}/books`);
-        if (!response.ok) throw new Error('Unable to load books.');
-        const books = await response.json();
-        renderBooks(books);
-      } catch (error) {
-        booksTableBody.innerHTML = '<tr><td colspan="4">Failed to load books. Refresh the page to try again.</td></tr>';
-        showMessage(error.message, 'error');
-      }
-    }
-
-    async function addBook(event) {
-      event.preventDefault();
-      const title = titleInput.value.trim();
-      const author = authorInput.value.trim();
-
-      if (!title || !author) {
-        showMessage('Both title and author are required.', 'error');
-        return;
+        text-align: left;
+        padding: 16px 14px;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: middle;
+        font-size: 0.95rem;
+        color: #1e293b;
       }
 
-      try {
-        const response = await fetch(`${apiBase}/books`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, author }),
-        });
+      th {
+        color: #0f172a;
+        background: #f8fafc;
+        font-weight: 600;
+      }
 
-        if (!response.ok) {
-          const errorBody = await response.json();
-          throw new Error(errorBody.message || 'Unable to add book.');
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .action-button {
+        min-width: 96px;
+        color: #ffffff;
+      }
+
+      .action-button.delete {
+        background: #dc2626;
+      }
+
+      .action-button.edit {
+        background: #f59e0b;
+      }
+
+      .action-button.save {
+        background: #10b981;
+      }
+
+      .action-button.cancel {
+        background: #64748b;
+      }
+
+      footer {
+        width: 100%;
+        max-width: 1040px;
+        margin: 0 auto 8px;
+        padding: 14px 24px;
+        text-align: center;
+        color: #475569;
+        font-size: 0.95rem;
+        background: transparent;
+      }
+
+      @media (max-width: 740px) {
+        body {
+          padding: 16px;
         }
 
-        titleInput.value = '';
-        authorInput.value = '';
-        await loadBooks();
-        showMessage('Book added successfully.');
-      } catch (error) {
-        showMessage(error.message, 'error');
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        th,
+        td {
+          padding: 14px 10px;
+        }
       }
-    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Books CRUD Interface</h1>
+      <p>
+        Manage books using the API backend. Add a new book, then edit or delete any entry from the
+        list below.
+      </p>
+    </header>
 
-    function renderBooks(books) {
-      if (!books || books.length === 0) {
-        booksTableBody.innerHTML = '<tr><td colspan="4">No books available. Add a book above to get started.</td></tr>';
-        return;
+    <section class="card">
+      <h2>Add a New Book</h2>
+      <form id="add-book-form">
+        <div class="field-row">
+          <label>
+            Title
+            <input id="title-input" type="text" placeholder="Enter book title" required />
+          </label>
+          <label>
+            Author
+            <input id="author-input" type="text" placeholder="Enter author name" required />
+          </label>
+        </div>
+        <button type="submit">Add Book</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Book List</h2>
+      <div id="message" class="message"></div>
+      <div class="table-wrapper">
+        <table id="books-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Copyright 2026 - powered by
+      <a href="https://razvanvancea.ro/" target="_blank" rel="noreferrer">Razvan Vancea</a>
+    </footer>
+
+    <script>
+      const apiBase = '';
+      const booksTableBody = document.querySelector('#books-table tbody');
+      const addForm = document.getElementById('add-book-form');
+      const titleInput = document.getElementById('title-input');
+      const authorInput = document.getElementById('author-input');
+      const messageEl = document.getElementById('message');
+      let editingId = null;
+
+      function showMessage(text, type = 'success') {
+        messageEl.textContent = text;
+        messageEl.className = `message visible ${type}`;
+        setTimeout(() => {
+          messageEl.className = 'message';
+        }, 3200);
       }
 
-      booksTableBody.innerHTML = books
-        .map((book) => renderRow(book))
-        .join('');
+      function formatCell(value) {
+        return value == null ? '' : String(value);
+      }
 
-      booksTableBody.querySelectorAll('.edit-button').forEach((button) => {
-        button.addEventListener('click', () => startEdit(parseInt(button.dataset.id, 10)));
-      });
+      async function loadBooks() {
+        try {
+          const response = await fetch(`${apiBase}/books`);
+          if (!response.ok) throw new Error('Unable to load books.');
+          const books = await response.json();
+          renderBooks(books);
+        } catch (error) {
+          booksTableBody.innerHTML =
+            '<tr><td colspan="4">Failed to load books. Refresh the page to try again.</td></tr>';
+          showMessage(error.message, 'error');
+        }
+      }
 
-      booksTableBody.querySelectorAll('.delete-button').forEach((button) => {
-        button.addEventListener('click', () => deleteBook(parseInt(button.dataset.id, 10)));
-      });
+      async function addBook(event) {
+        event.preventDefault();
+        const title = titleInput.value.trim();
+        const author = authorInput.value.trim();
 
-      booksTableBody.querySelectorAll('.save-button').forEach((button) => {
-        button.addEventListener('click', () => saveBook(parseInt(button.dataset.id, 10)));
-      });
+        if (!title || !author) {
+          showMessage('Both title and author are required.', 'error');
+          return;
+        }
 
-      booksTableBody.querySelectorAll('.cancel-button').forEach((button) => {
-        button.addEventListener('click', cancelEdit);
-      });
-    }
+        try {
+          const response = await fetch(`${apiBase}/books`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, author }),
+          });
 
-    function renderRow(book) {
-      if (editingId === book.id) {
-        return `
+          if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.message || 'Unable to add book.');
+          }
+
+          titleInput.value = '';
+          authorInput.value = '';
+          await loadBooks();
+          showMessage('Book added successfully.');
+        } catch (error) {
+          showMessage(error.message, 'error');
+        }
+      }
+
+      function renderBooks(books) {
+        if (!books || books.length === 0) {
+          booksTableBody.innerHTML =
+            '<tr><td colspan="4">No books available. Add a book above to get started.</td></tr>';
+          return;
+        }
+
+        booksTableBody.innerHTML = books.map((book) => renderRow(book)).join('');
+
+        booksTableBody.querySelectorAll('.edit-button').forEach((button) => {
+          button.addEventListener('click', () => startEdit(parseInt(button.dataset.id, 10)));
+        });
+
+        booksTableBody.querySelectorAll('.delete-button').forEach((button) => {
+          button.addEventListener('click', () => deleteBook(parseInt(button.dataset.id, 10)));
+        });
+
+        booksTableBody.querySelectorAll('.save-button').forEach((button) => {
+          button.addEventListener('click', () => saveBook(parseInt(button.dataset.id, 10)));
+        });
+
+        booksTableBody.querySelectorAll('.cancel-button').forEach((button) => {
+          button.addEventListener('click', cancelEdit);
+        });
+      }
+
+      function renderRow(book) {
+        if (editingId === book.id) {
+          return `
           <tr>
             <td>${book.id}</td>
             <td><input class="inline-input" id="title-edit-${book.id}" value="${escapeHtml(book.title)}" /></td>
@@ -376,9 +391,9 @@
             </td>
           </tr>
         `;
-      }
+        }
 
-      return `
+        return `
         <tr>
           <td>${book.id}</td>
           <td>${escapeHtml(book.title)}</td>
@@ -389,81 +404,81 @@
           </td>
         </tr>
       `;
-    }
-
-    function startEdit(bookId) {
-      editingId = bookId;
-      loadBooks();
-    }
-
-    function cancelEdit() {
-      editingId = null;
-      loadBooks();
-    }
-
-    async function saveBook(bookId) {
-      const titleField = document.getElementById(`title-edit-${bookId}`);
-      const authorField = document.getElementById(`author-edit-${bookId}`);
-      const title = titleField?.value.trim();
-      const author = authorField?.value.trim();
-
-      if (!title || !author) {
-        showMessage('Title and author cannot be blank.', 'error');
-        return;
       }
 
-      try {
-        const response = await fetch(`${apiBase}/books/${bookId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, author }),
-        });
+      function startEdit(bookId) {
+        editingId = bookId;
+        loadBooks();
+      }
 
-        if (!response.ok) {
-          const errorBody = await response.json();
-          throw new Error(errorBody.message || 'Unable to update book.');
-        }
-
+      function cancelEdit() {
         editingId = null;
-        await loadBooks();
-        showMessage('Book updated successfully.');
-      } catch (error) {
-        showMessage(error.message, 'error');
+        loadBooks();
       }
-    }
 
-    async function deleteBook(bookId) {
-      const confirmed = confirm('Delete this book?');
-      if (!confirmed) return;
+      async function saveBook(bookId) {
+        const titleField = document.getElementById(`title-edit-${bookId}`);
+        const authorField = document.getElementById(`author-edit-${bookId}`);
+        const title = titleField?.value.trim();
+        const author = authorField?.value.trim();
 
-      try {
-        const response = await fetch(`${apiBase}/books/${bookId}`, {
-          method: 'DELETE',
-        });
-
-        if (!response.ok) {
-          const errorBody = await response.json();
-          throw new Error(errorBody.message || 'Unable to delete book.');
+        if (!title || !author) {
+          showMessage('Title and author cannot be blank.', 'error');
+          return;
         }
 
-        await loadBooks();
-        showMessage('Book deleted successfully.');
-      } catch (error) {
-        showMessage(error.message, 'error');
+        try {
+          const response = await fetch(`${apiBase}/books/${bookId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, author }),
+          });
+
+          if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.message || 'Unable to update book.');
+          }
+
+          editingId = null;
+          await loadBooks();
+          showMessage('Book updated successfully.');
+        } catch (error) {
+          showMessage(error.message, 'error');
+        }
       }
-    }
 
-    function escapeHtml(value) {
-      return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
+      async function deleteBook(bookId) {
+        const confirmed = confirm('Delete this book?');
+        if (!confirmed) return;
 
-    addForm.addEventListener('submit', addBook);
-    window.addEventListener('DOMContentLoaded', loadBooks);
-  </script>
-</body>
+        try {
+          const response = await fetch(`${apiBase}/books/${bookId}`, {
+            method: 'DELETE',
+          });
+
+          if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.message || 'Unable to delete book.');
+          }
+
+          await loadBooks();
+          showMessage('Book deleted successfully.');
+        } catch (error) {
+          showMessage(error.message, 'error');
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      addForm.addEventListener('submit', addBook);
+      window.addEventListener('DOMContentLoaded', loadBooks);
+    </script>
+  </body>
 </html>
