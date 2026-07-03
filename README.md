@@ -48,7 +48,7 @@ POST /auth/login
 Content-Type: application/json
 
 {
-"email": "rv@tai.com",
+"email": "admin@admin.com",
 "password": "learnwithrv"
 }
 
@@ -62,7 +62,7 @@ Authorization: Bearer <JWT_TOKEN>
 📖 API Endpoints
 🔓 Public
 
-POST /auth/login → Get JWT token (email: rv@tai.com, password: learnwithrv)
+POST /auth/login → Get JWT token (email: admin@admin.com, password: learnwithrv)
 
 GET /books → Get all books
 

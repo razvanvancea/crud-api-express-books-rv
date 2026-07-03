@@ -106,7 +106,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"email\":\"rv@tai.com\",\n    \"password\": \"learnwithrv\"\n}",
+          "raw": "{\n    \"email\":\"admin@admin.com\",\n    \"password\": \"learnwithrv\"\n}",
           "options": {
             "raw": {
               "language": "json"
