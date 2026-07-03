@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -8,6 +9,10 @@ const app = express();
 const port = 3001;
 
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Secret key for JWT (for demo purposes only)
 const SECRET_KEY = 'mysecretkey';
