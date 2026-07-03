@@ -36,7 +36,7 @@ Server will run at: http://localhost:3001
 
 Web UI: http://localhost:3001/
 
-![Books CRUD Web UI](public/web.png)
+![Books CRUD Web UI](public/web-2.png)
 
 Swagger docs: http://localhost:3001/api-docs
 
