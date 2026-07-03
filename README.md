@@ -2,6 +2,12 @@
 
 A simple Node.js + Express CRUD web interface and API to manage books, with JWT authentication and Swagger documentation. Perfect for learning and teaching API test automation.
 
+Swagger docs: http://localhost:3001/api-docs
+
+Web UI: http://localhost:3001/
+
+Server will run at: http://localhost:3001
+
 🚀 Features
 
 Create, Read, Update, Delete (CRUD) operations for books
