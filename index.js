@@ -31,7 +31,8 @@ const swaggerOptions = {
     info: {
       title: 'Books API',
       version: '1.0.0',
-      description: 'A simple CRUD API with authentication for teaching API test automation',
+      description:
+        'A simple CRUD API with authentication for teaching API test automation. For JSON file, access /api-docs/swagger.json',
     },
     servers: [{ url: `http://localhost:${port}` }],
   },
@@ -39,7 +40,34 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/api-docs/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    customJs: `
+      window.addEventListener('load', function () {
+        const description = document.querySelector('.info .description');
+        if (!description || document.getElementById('swagger-json-link')) return;
+
+        const link = document.createElement('a');
+        link.id = 'swagger-json-link';
+        link.href = '/api-docs/swagger.json';
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+        link.textContent = 'Open raw JSON';
+        link.style.display = 'inline-block';
+        link.style.marginTop = '10px';
+        link.style.fontWeight = '600';
+        link.style.color = '#0066cc';
+        description.insertAdjacentElement('afterend', link);
+      });
+    `,
+  })
+);
 
 // Health check endpoint
 /**
